@@ -1,0 +1,10 @@
+# for all our lovely modules
+/node_modules
+
+# my personal "ignore this" folder
+/ignore
+
+
+.DS_Store
+.Trashes
+

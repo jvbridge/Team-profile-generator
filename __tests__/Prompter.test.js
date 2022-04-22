@@ -65,7 +65,7 @@ describe ("Prompter", () => {
             Inquirer.prompt.mockReturnValue(new Promise((resolve)=>{return answers;}));
             
             // after the promise resolves run the test
-            prompt.askEngineer().then(() =>{
+            prompt.askIntern().then(() =>{
                 expect(prompt.employees.length).toEqual(currLen + 1);
                 expect(prompt.employees[currLen] instanceof Intern).toEqual(true);
             });

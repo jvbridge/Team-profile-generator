@@ -34,6 +34,13 @@ describe('Manager', () => {
         });
     });
 
+    // Manager should also get the office number and have the new role
+    describe('getOfficeNumber', () =>{
+        it ("should return the office number of the manager", () =>{
+            expect(man.getOfficeNumber()).toEqual(officeNumber);
+        });
+    });
+
     describe('getRole', () =>{
         it ("should return the role of the manager", () =>{
             expect(man.getRole()).toEqual("Manager");

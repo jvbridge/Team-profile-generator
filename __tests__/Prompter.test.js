@@ -31,7 +31,7 @@ describe ("Prompter", () => {
             
         });
     });
-    
+
     describe("prompt engineer", () => {
         it ("should prompt the user to create a new engineer", async () => {
             const currLen = prompt.employees.length;
@@ -48,6 +48,26 @@ describe ("Prompter", () => {
             prompt.askEngineer().then(() =>{
                 expect(prompt.employees.length).toEqual(currLen + 1);
                 expect(prompt.employees[currLen] instanceof Engineer).toEqual(true);
+            });
+            
+        });
+    });
+    describe("prompt intern", () => {
+        it ("should prompt the user to create a new engineer", async () => {
+            const currLen = prompt.employees.length;
+            const answers = {
+                name: "John Doe", 
+                id:"429", 
+                email:"JohnDoe@example.com", 
+                school: "UC Berkeley"
+            };
+            // inquirer returns a promise 
+            Inquirer.prompt.mockReturnValue(new Promise((resolve)=>{return answers;}));
+            
+            // after the promise resolves run the test
+            prompt.askEngineer().then(() =>{
+                expect(prompt.employees.length).toEqual(currLen + 1);
+                expect(prompt.employees[currLen] instanceof Intern).toEqual(true);
             });
             
         });

@@ -18,7 +18,7 @@ describe('Employee', () => {
     });
 
     describe('getId', () =>{
-        it ("should return the name of the employee", () =>{
+        it ("should return the id of the employee", () =>{
             const id = "0x2fba";
             const emp = new Employee("john doe", id, "JohnDoe@example.com");
             expect(emp.getId()).toEqual(id);
@@ -26,7 +26,7 @@ describe('Employee', () => {
     });
     
     describe('getEmail', () =>{
-        it ("should return the name of the employee", () =>{
+        it ("should return the email of the employee", () =>{
             const email = "JohnDoe@example.com";
             const emp = new Employee("john doe", "0x2fba", email);
             expect(emp.getEmail()).toEqual(email);
@@ -34,7 +34,7 @@ describe('Employee', () => {
     });
 
     describe('getRole', () =>{
-        it ("should return the name of the employee", () =>{
+        it ("should return the role of the employee", () =>{
             const emp = new Employee("john doe", "0x2fba", "JohnDoe@example.com");
             expect(emp.getRole()).toEqual("Employee");
         });

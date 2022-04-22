@@ -32,7 +32,7 @@ describe('Intern', () =>{
         });
     });
 
-    // Engineer should also get the github and have the new role
+    // Intern should also get the school and have the new role
     describe('getSchool', () =>{
         it ("should return the school of the intern", () =>{
             expect(intern.getSchool()).toEqual(school);
@@ -40,7 +40,7 @@ describe('Intern', () =>{
     });
 
     describe('getRole', () =>{
-        it ("should return the role of the engineer", () =>{
+        it ("should return the role of the intern", () =>{
             expect(intern.getRole()).toEqual("Intern");
         });
     });

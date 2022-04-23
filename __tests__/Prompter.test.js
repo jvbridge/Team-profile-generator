@@ -11,6 +11,24 @@ jest.mock("inquirer");
 describe ("Prompter", () => {
     const prompt = new Prompter();
 
+    describe("prompt employee", () =>{
+        it ("should prompt the user which kind of employee they want", () => {
+            const answer = 
+            {
+                role: "Manager",
+                name: "John Doe", 
+                id:"429", 
+                email:"JohnDoe@example.com", 
+                officeNumber: 429
+            };
+            Inquirer.prompt.mockReturnValue(new Promise((resolve) => {
+                return answer;
+            }));
+
+            expect(prompt.askEmployee()).resolves.toEqual(prompt.askManager());
+        });
+    });
+
     describe("prompt manager", () => {
         it ("should prompt the user to create a new manager", async () => {
             const currLen = prompt.employees.length;
@@ -52,6 +70,7 @@ describe ("Prompter", () => {
             
         });
     });
+
     describe("prompt intern", () => {
         it ("should prompt the user to create a new engineer", async () => {
             const currLen = prompt.employees.length;

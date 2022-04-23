@@ -19,13 +19,29 @@ describe ("Prompter", () => {
                 name: "John Doe", 
                 id:"429", 
                 email:"JohnDoe@example.com", 
-                officeNumber: 429
+                officeNumber: 429,
+                github: "octocat",
+                school: "UC Berkeley"
             };
             Inquirer.prompt.mockReturnValue(new Promise((resolve) => {
                 return answer;
             }));
+            prompt.askEmployee().then(() => {
+                expect(prompt.employees.length).toEqual(currEmployees + 1);
+                expect(prompt.employees[employees.length -1] instanceof Manager).toEqual(true);
+            });
 
-            expect(prompt.askEmployee()).resolves.toEqual(prompt.askManager());
+            answer.role = "Engineer";
+            prompt.askEmployee().then(() => {
+                expect(prompt.employees.length).toEqual(currEmployees + 1);
+                expect(prompt.employees[employees.length -1] instanceof Engineer).toEqual(true);
+            });
+
+            answer.role = "Intern";
+            prompt.askEmployee().then(() => {
+                expect(prompt.employees.length).toEqual(currEmployees + 1);
+                expect(prompt.employees[employees.length -1] instanceof Intern).toEqual(true);
+            });
         });
     });
 

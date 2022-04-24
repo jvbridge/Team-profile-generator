@@ -9,10 +9,10 @@ jest.mock("inquirer");
 
 
 describe ("Prompter", () => {
-    const prompt = new Prompter();
 
     describe("prompt employee", () =>{
         it ("should prompt the user which kind of employee they want", () => {
+            const prompt = new Prompter();
             const answer = 
             {
                 role: "Manager",
@@ -47,12 +47,14 @@ describe ("Prompter", () => {
 
     describe("prompt manager", () => {
         it ("should prompt the user to create a new manager", async () => {
+            const prompt = new Prompter();
             const currLen = prompt.employees.length;
             const answers = {
                 name: "John Doe", 
                 id:"429", 
                 email:"JohnDoe@example.com", 
-                officeNumber: 429
+                officeNumber: 429,
+                anotherEmp :false
             };
             // inquirer returns a promise 
             Inquirer.prompt.mockReturnValue(new Promise((resolve)=>{return answers;}));
@@ -68,12 +70,14 @@ describe ("Prompter", () => {
 
     describe("prompt engineer", () => {
         it ("should prompt the user to create a new engineer", async () => {
+            const prompt = new Prompter();
             const currLen = prompt.employees.length;
             const answers = {
                 name: "John Doe", 
                 id:"429", 
                 email:"JohnDoe@example.com", 
-                github: "octocat"
+                github: "octocat",
+                anotherEmp :false
             };
             // inquirer returns a promise 
             Inquirer.prompt.mockReturnValue(new Promise((resolve)=>{return answers;}));
@@ -89,12 +93,14 @@ describe ("Prompter", () => {
 
     describe("prompt intern", () => {
         it ("should prompt the user to create a new engineer", async () => {
+            const prompt = new Prompter();
             const currLen = prompt.employees.length;
             const answers = {
                 name: "John Doe", 
                 id:"429", 
                 email:"JohnDoe@example.com", 
-                school: "UC Berkeley"
+                school: "UC Berkeley",
+                anotherEmp :false
             };
             // inquirer returns a promise 
             Inquirer.prompt.mockReturnValue(new Promise((resolve)=>{return answers;}));
@@ -104,7 +110,38 @@ describe ("Prompter", () => {
                 expect(prompt.employees.length).toEqual(currLen + 1);
                 expect(prompt.employees[currLen] instanceof Intern).toEqual(true);
             });
+        });
+    });
+
+    // describe("ask again", () => {
+    //     it ("should prompt the user to make another employee if they said yes", () => {
+    //         const prompt = new Prompter();
+    //         Inquirer.prompt.mockReturnValue({anotherEmp: true});
+    //         expect(prompt.askAgain().then(()=>{
+
+    //         }));
+    //     });
+    // });
+
+    describe("Init", () => {
+        it ("should start by prompting the user to make a manager", () => {
+            const answers = {
+                name: "John Doe", 
+                id:"429", 
+                email:"JohnDoe@example.com", 
+                officeNumber: 429,
+                anotherEmp :false
+            };
+
+            Inquirer.prompt.mockReturnValue(new Promise((resolve)=>{return answers;}));
+            const prompt = new Prompter();
+            
+            prompt.init().then(() => {
+                expect(prompt.employees.length).toEqual(1);
+                expect(prompt.employees[0] instanceof Manager).toEqual(true);
+            });
             
         });
+
     });
 });

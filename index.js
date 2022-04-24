@@ -3,11 +3,8 @@ const fs = require("fs");
 const Inquirer = require("inquirer");
 
 // class imports
-const Employee = require("./lib/Employee");
-const Engineer = require("./lib/Engineer");
-const Intern = require("./lib/Intern");
-const Manager = require("./lib/Manager");
 const Prompter = require("./lib/Prompter");
+const Generator = require("./lib/Generator");
 
 // imported JSON files
 
@@ -44,11 +41,14 @@ const questions = [
 ];
 
 function main(args){
-    
+    // make instances of our classes
     let prompt = new Prompter();
-    prompt.init().then(() =>{
-        // TODO: make generator go here
-        console.log(prompt.employees);
+    let gen = new Generator();
+
+    // ask the user for details on the employees
+    prompt.init().then(() => {
+        // after all the asking is done generate the employees
+        gen.generate(prompt.getEmployees());
     });
     
 }

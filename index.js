@@ -43,13 +43,13 @@ const questions = [
     }
 ];
 
-
-
-
 function main(args){
     
     let prompt = new Prompter();
-    prompt.askManager();
+    prompt.init().then(() =>{
+        // TODO: make generator go here
+        console.log(prompt.employees);
+    });
     
 }
 

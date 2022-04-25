@@ -11,14 +11,26 @@ works.
 
 ## Installation
 
+This requires Node.js to be installed in order to work.
+
 Download this repository to a directory and then run `npm install` in order to
 download all of the necessary node modules to run it. 
 
-After that you should be able to run it by running `node ./index.js`
+After that you should be able to run it by running `node ./index.js` or 
+`node ./`
 
 ## Usage
 
-Answer the given prompts to create the HTML.
+The program will prompt you to enter information about employees. The first 
+employee will always be a manager. Others will be engineers and Interns. 
+
+All employees will have Names, Emails, and ID numbers (all strings). Managers
+will have Office numbers, Engineers will have github user names, and Interns
+will have schools. 
+
+After you finish entering all the details the program will write the file to
+`./dist/team-profile.html`. It will overwrite any file in there that already
+has that name. 
 
 ## Credits
 
@@ -35,8 +47,9 @@ Licensed under the MIT license
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## Contributing
-
 ## Tests
 
 You can see all the tests used in the `./__tests__` directory
+
+If you wish to see the results of them run `npm run test` within the main 
+directory. 

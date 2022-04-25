@@ -56,10 +56,6 @@ function main(args){
     prompt.init().then(() => {
         // after all the asking is done generate the employees
         console.log("Generating employees...");
-        const man = new Manager("Picard", "NCC-1701-D", "picard@enterprise.org", 0);
-        const eng = new Engineer("Geordi La Forge", "SC-722-829", "laforge@enterprise.org", "visionMan");
-        const intern = new Intern("Westley Crusher", "SD-2353", "cursher2@enterprise.org", "Starfleet Academy");
-        console.log(gen.employeeStr(intern));
         const write = gen.generate(prompt.getEmployees());
         fs.writeFileSync(FILE_PATH, write);
         console.log("Successfully wrote to: ", FILE_PATH);

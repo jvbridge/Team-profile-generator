@@ -5,6 +5,10 @@ const Engineer = require("../lib/Engineer");
 const Intern = require("../lib/Intern");
 
 
+function stripWhitespace (str){
+    return str.split(" ").join("");
+}
+
 jest.mock("fs");
 
 describe ("Generator", () => {
@@ -72,15 +76,15 @@ describe ("Generator", () => {
     describe("employeeStr()", () =>{
         
         it("should make a Manager card", () =>{
-            expect(gen.employeeStr(man)).toEqual(manStr);
+            expect(stripWhitespace(gen.employeeStr(man))).toEqual(stripWhitespace(manStr));
         });
         
         it("should make an Engineer card", () =>{
-            expect(gen.employeeStr(eng)).toEqual(engStr);
+            expect(stripWhitespace(gen.employeeStr(eng))).toEqual(stripWhitespace(engStr));
         });
 
         it("should make an Intern card", () =>{
-            expect(gen.employeeStr(intern)).toEqual(intStr);
+            expect(stripWhitespace(gen.employeeStr(intern))).toEqual(stripWhitespace(intStr));
         });
     });
 
@@ -107,7 +111,7 @@ ${cardsStr}
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>`;
         it ("Should generate the web page from the employees", () => {
-            expect(gen.generate(employees)).toEqual(doc);
+            expect(stripWhitespace(gen.generate(employees))).toEqual(stripWhitespace(doc));
         });
     });
 });

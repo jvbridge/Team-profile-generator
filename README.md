@@ -32,6 +32,10 @@ After you finish entering all the details the program will write the file to
 `./dist/team-profile.html`. It will overwrite any file in there that already
 has that name. 
 
+https://user-images.githubusercontent.com/6423593/165187307-867e0248-ef15-4599-8b69-ce9cb36133b0.mp4
+
+The default `./dist/team-profile.html` file is the one created in this video. 
+
 ## Credits
 
 |Technologies used |

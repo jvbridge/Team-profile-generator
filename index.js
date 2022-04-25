@@ -3,11 +3,15 @@ const fs = require("fs");
 const Inquirer = require("inquirer");
 
 // class imports
-const Employee = require("./lib/Employee");
+const Prompter = require("./lib/Prompter");
+const Generator = require("./lib/Generator");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
-const Prompter = require("./lib/Prompter");
+
+
+// constants
+const FILE_PATH = "./dist/team-profile.html";
 
 // imported JSON files
 
@@ -44,11 +48,21 @@ const questions = [
 ];
 
 function main(args){
-    
+    // make instances of our classes
     let prompt = new Prompter();
-    prompt.init().then(() =>{
-        // TODO: make generator go here
-        console.log(prompt.employees);
+    let gen = new Generator();
+
+    // ask the user for details on the employees
+    prompt.init().then(() => {
+        // after all the asking is done generate the employees
+        console.log("Generating employees...");
+        const man = new Manager("Picard", "NCC-1701-D", "picard@enterprise.org", 0);
+        const eng = new Engineer("Geordi La Forge", "SC-722-829", "laforge@enterprise.org", "visionMan");
+        const intern = new Intern("Westley Crusher", "SD-2353", "cursher2@enterprise.org", "Starfleet Academy");
+        console.log(gen.employeeStr(intern));
+        const write = gen.generate(prompt.getEmployees());
+        fs.writeFileSync(FILE_PATH, write);
+        console.log("Successfully wrote to: ", FILE_PATH);
     });
     
 }
